@@ -1,0 +1,1271 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>English Sentence Practice</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: "Noto Sans Bengali", "SolaimanLipi", Arial, sans-serif;
+        background: linear-gradient(135deg, #e8f5e9, #e3f2fd);
+        color: #222;
+    }
+
+    .container {
+        max-width: 850px;
+        margin: auto;
+        padding: 20px;
+    }
+
+    .header {
+        background: linear-gradient(135deg, #1565c0, #0d47a1);
+        color: white;
+        padding: 25px 20px;
+        border-radius: 18px;
+        text-align: center;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        margin-bottom: 20px;
+    }
+
+    .header h1 {
+        margin: 0 0 8px;
+        font-size: 28px;
+    }
+
+    .header p {
+        margin: 0;
+        font-size: 16px;
+    }
+
+    .progress-area {
+        background: white;
+        padding: 15px;
+        border-radius: 15px;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    }
+
+    .progress-text {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 8px;
+        font-weight: bold;
+    }
+
+    .progress {
+        width: 100%;
+        height: 12px;
+        background: #ddd;
+        border-radius: 20px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        height: 100%;
+        width: 1%;
+        background: linear-gradient(90deg, #00c853, #64dd17);
+        transition: width 0.3s;
+    }
+
+    .card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+    }
+
+    .question-number {
+        color: #1565c0;
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .bangla {
+        font-size: 28px;
+        line-height: 1.7;
+        text-align: center;
+        padding: 25px 15px;
+        background: #f5faff;
+        border: 2px solid #bbdefb;
+        border-radius: 15px;
+        margin-bottom: 18px;
+    }
+
+    .speak-btn {
+        display: block;
+        margin: 0 auto 25px;
+        background: #ff9800;
+        color: white;
+        border: none;
+        padding: 12px 22px;
+        border-radius: 30px;
+        font-size: 17px;
+        cursor: pointer;
+    }
+
+    .speak-btn:hover {
+        background: #f57c00;
+    }
+
+    label {
+        display: block;
+        font-size: 17px;
+        font-weight: bold;
+        margin-bottom: 8px;
+    }
+
+    textarea {
+        width: 100%;
+        min-height: 100px;
+        resize: vertical;
+        border: 2px solid #90caf9;
+        border-radius: 12px;
+        padding: 15px;
+        font-size: 18px;
+        font-family: Arial, sans-serif;
+        outline: none;
+    }
+
+    textarea:focus {
+        border-color: #1565c0;
+        box-shadow: 0 0 0 3px rgba(21,101,192,0.12);
+    }
+
+    .buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+    }
+
+    button {
+        border: none;
+        cursor: pointer;
+        border-radius: 10px;
+        padding: 12px 18px;
+        font-size: 16px;
+        font-weight: bold;
+    }
+
+    .check {
+        background: #2e7d32;
+        color: white;
+        flex: 1;
+    }
+
+    .check:hover {
+        background: #1b5e20;
+    }
+
+    .previous {
+        background: #757575;
+        color: white;
+    }
+
+    .next {
+        background: #1565c0;
+        color: white;
+    }
+
+    .reset {
+        background: #c62828;
+        color: white;
+    }
+
+    .result {
+        margin-top: 20px;
+        padding: 18px;
+        border-radius: 12px;
+        display: none;
+        font-size: 18px;
+        line-height: 1.7;
+    }
+
+    .correct {
+        display: block;
+        background: #e8f5e9;
+        border: 2px solid #4caf50;
+        color: #1b5e20;
+    }
+
+    .wrong {
+        display: block;
+        background: #ffebee;
+        border: 2px solid #ef5350;
+        color: #b71c1c;
+    }
+
+    .answer {
+        margin-top: 8px;
+        color: #333;
+        font-family: Arial, sans-serif;
+        font-weight: bold;
+    }
+
+    .score-box {
+        margin-top: 20px;
+        background: #fff8e1;
+        border: 2px solid #ffca28;
+        padding: 15px;
+        border-radius: 12px;
+        text-align: center;
+        font-size: 19px;
+        font-weight: bold;
+    }
+
+    @media (max-width: 600px) {
+        .container {
+            padding: 10px;
+        }
+
+        .card {
+            padding: 18px;
+        }
+
+        .header h1 {
+            font-size: 23px;
+        }
+
+        .bangla {
+            font-size: 23px;
+        }
+
+        .buttons {
+            flex-direction: column;
+        }
+
+        .buttons button {
+            width: 100%;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🇬🇧 English Sentence Practice</h1>
+        <p>বাংলা বাক্য দেখে ইংরেজি বলুন বা লিখুন</p>
+    </div>
+
+    <div class="progress-area">
+        <div class="progress-text">
+            <span id="progressText">বাক্য 1 / 100</span>
+            <span id="scoreText">স্কোর: 0</span>
+        </div>
+
+        <div class="progress">
+            <div class="progress-bar" id="progressBar"></div>
+        </div>
+    </div>
+
+    <div class="card">
+
+        <div class="question-number" id="questionNumber">
+            প্রশ্ন ১
+        </div>
+
+        <div class="bangla" id="banglaSentence">
+            আমি একজন ছাত্র।
+        </div>
+
+        <button class="speak-btn" onclick="speakBangla()">
+            🔊 বাংলা বাক্য শুনুন
+        </button>
+
+        <label for="answer">
+            আপনার English উত্তর লিখুন:
+        </label>
+
+        <textarea
+            id="answer"
+            placeholder="এখানে English বাক্য লিখুন..."
+            autocomplete="off"
+            spellcheck="false"
+        ></textarea>
+
+        <div class="buttons">
+
+            <button class="previous" onclick="previousQuestion()">
+                ◀ Previous
+            </button>
+
+            <button class="check" onclick="checkAnswer()">
+                ✓ Check Answer
+            </button>
+
+            <button class="next" onclick="nextQuestion()">
+                Next ▶
+            </button>
+
+            <button class="reset" onclick="resetQuiz()">
+                ↻ Reset
+            </button>
+
+        </div>
+
+        <div id="result" class="result"></div>
+
+        <div class="score-box">
+            সঠিক উত্তর: <span id="correctCount">0</span>
+            &nbsp; | &nbsp;
+            চেষ্টা: <span id="attemptCount">0</span>
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+
+/*
+====================================================
+100টি বাংলা বাক্য + তাদের সঠিক English উত্তর
+English উত্তর শিক্ষার্থীর সামনে সরাসরি দেখানো হবে না।
+====================================================
+*/
+
+const sentences = [
+
+    {
+        bn: "আমি একজন ছাত্র।",
+        en: "I am a student."
+    },
+    {
+        bn: "আমি খুশি।",
+        en: "I am happy."
+    },
+    {
+        bn: "আমি ব্যস্ত।",
+        en: "I am busy."
+    },
+    {
+        bn: "আমি প্রস্তুত।",
+        en: "I am ready."
+    },
+    {
+        bn: "আমি ক্লান্ত।",
+        en: "I am tired."
+    },
+    {
+        bn: "আমি একজন শিক্ষক।",
+        en: "I am a teacher."
+    },
+    {
+        bn: "আমি সৎ।",
+        en: "I am honest."
+    },
+    {
+        bn: "আমি একজন ভালো মানুষ।",
+        en: "I am a good person."
+    },
+    {
+        bn: "আমি বাংলাদেশি।",
+        en: "I am Bangladeshi."
+    },
+    {
+        bn: "আমি তোমার বন্ধু।",
+        en: "I am your friend."
+    },
+
+    {
+        bn: "তুমি ভালো।",
+        en: "You are good."
+    },
+    {
+        bn: "তুমি সৎ।",
+        en: "You are honest."
+    },
+    {
+        bn: "তুমি আমার বন্ধু।",
+        en: "You are my friend."
+    },
+    {
+        bn: "তুমি একজন ছাত্র।",
+        en: "You are a student."
+    },
+    {
+        bn: "তুমি প্রস্তুত।",
+        en: "You are ready."
+    },
+    {
+        bn: "তুমি ব্যস্ত।",
+        en: "You are busy."
+    },
+    {
+        bn: "তুমি খুব বুদ্ধিমান।",
+        en: "You are very intelligent."
+    },
+    {
+        bn: "তুমি একজন ভালো মানুষ।",
+        en: "You are a good person."
+    },
+    {
+        bn: "তুমি আমার ভাই।",
+        en: "You are my brother."
+    },
+    {
+        bn: "তুমি আমার বোন।",
+        en: "You are my sister."
+    },
+
+    {
+        bn: "সে একজন শিক্ষক।",
+        en: "He is a teacher."
+    },
+    {
+        bn: "সে অসুস্থ।",
+        en: "She is sick."
+    },
+    {
+        bn: "সে একজন ডাক্তার।",
+        en: "He is a doctor."
+    },
+    {
+        bn: "সে খুব লম্বা।",
+        en: "He is very tall."
+    },
+    {
+        bn: "সে খুব সুন্দর।",
+        en: "She is very beautiful."
+    },
+    {
+        bn: "সে বুদ্ধিমান।",
+        en: "She is intelligent."
+    },
+    {
+        bn: "সে আমার বন্ধু।",
+        en: "He is my friend."
+    },
+    {
+        bn: "সে আমার বোন।",
+        en: "She is my sister."
+    },
+    {
+        bn: "সে একজন নার্স।",
+        en: "She is a nurse."
+    },
+    {
+        bn: "সে খুব দয়ালু।",
+        en: "He is very kind."
+    },
+
+    {
+        bn: "এটি একটি বই।",
+        en: "It is a book."
+    },
+    {
+        bn: "এটি সহজ।",
+        en: "It is easy."
+    },
+    {
+        bn: "এটি কঠিন।",
+        en: "It is difficult."
+    },
+    {
+        bn: "এটি আমার কলম।",
+        en: "It is my pen."
+    },
+    {
+        bn: "এটি গুরুত্বপূর্ণ।",
+        en: "It is important."
+    },
+    {
+        bn: "এটি একটি সুন্দর বাড়ি।",
+        en: "It is a beautiful house."
+    },
+    {
+        bn: "এটি একটি ভালো সুযোগ।",
+        en: "It is a good opportunity."
+    },
+    {
+        bn: "এটি আমার সমস্যা।",
+        en: "It is my problem."
+    },
+    {
+        bn: "এটি সত্য।",
+        en: "It is true."
+    },
+    {
+        bn: "এটি অসম্ভব।",
+        en: "It is impossible."
+    },
+
+    {
+        bn: "আমরা বন্ধু।",
+        en: "We are friends."
+    },
+    {
+        bn: "আমরা প্রস্তুত।",
+        en: "We are ready."
+    },
+    {
+        bn: "আমরা বাংলাদেশি।",
+        en: "We are Bangladeshi."
+    },
+    {
+        bn: "আমরা ব্যস্ত।",
+        en: "We are busy."
+    },
+    {
+        bn: "আমরা সুখী।",
+        en: "We are happy."
+    },
+    {
+        bn: "আমরা দরিদ্র।",
+        en: "We are poor."
+    },
+    {
+        bn: "আমরা সৎ।",
+        en: "We are honest."
+    },
+    {
+        bn: "আমরা প্রতিবেশী।",
+        en: "We are neighbors."
+    },
+    {
+        bn: "আমরা ভালো ছাত্র।",
+        en: "We are good students."
+    },
+    {
+        bn: "আমরা একই দলের সদস্য।",
+        en: "We are members of the same team."
+    },
+
+    {
+        bn: "তারা ছাত্র।",
+        en: "They are students."
+    },
+    {
+        bn: "তারা শিক্ষক।",
+        en: "They are teachers."
+    },
+    {
+        bn: "তারা ধনী।",
+        en: "They are rich."
+    },
+    {
+        bn: "তারা দরিদ্র।",
+        en: "They are poor."
+    },
+    {
+        bn: "তারা সৎ।",
+        en: "They are honest."
+    },
+    {
+        bn: "তারা খুব ব্যস্ত।",
+        en: "They are very busy."
+    },
+    {
+        bn: "তারা আমার বন্ধু।",
+        en: "They are my friends."
+    },
+    {
+        bn: "তারা প্রস্তুত।",
+        en: "They are ready."
+    },
+    {
+        bn: "তারা খুব খুশি।",
+        en: "They are very happy."
+    },
+    {
+        bn: "তারা ভালো মানুষ।",
+        en: "They are good people."
+    },
+
+    {
+        bn: "আমার বাবা একজন ডাক্তার।",
+        en: "My father is a doctor."
+    },
+    {
+        bn: "আমার মা একজন শিক্ষক।",
+        en: "My mother is a teacher."
+    },
+    {
+        bn: "আমার ভাই খুব মেধাবী।",
+        en: "My brother is very intelligent."
+    },
+    {
+        bn: "আমার বোন একজন ভালো ছাত্রী।",
+        en: "My sister is a good student."
+    },
+    {
+        bn: "আমার বন্ধু একজন কৃষক।",
+        en: "My friend is a farmer."
+    },
+    {
+        bn: "এই বইটি খুব উপকারী।",
+        en: "This book is very useful."
+    },
+    {
+        bn: "এই প্রশ্নটি সহজ।",
+        en: "This question is easy."
+    },
+    {
+        bn: "এই রাস্তা খুব ব্যস্ত।",
+        en: "This road is very busy."
+    },
+    {
+        bn: "এই ঘরটি পরিষ্কার।",
+        en: "This room is clean."
+    },
+    {
+        bn: "এই কাজটি গুরুত্বপূর্ণ।",
+        en: "This work is important."
+    },
+
+    {
+        bn: "ওই ছেলেটি খুব অলস।",
+        en: "That boy is very lazy."
+    },
+    {
+        bn: "ওই মেয়েটি খুব বুদ্ধিমান।",
+        en: "That girl is very intelligent."
+    },
+    {
+        bn: "ওই মানুষটি একজন ব্যবসায়ী।",
+        en: "That man is a businessman."
+    },
+    {
+        bn: "ওই বাড়িটি অনেক বড়।",
+        en: "That house is very big."
+    },
+    {
+        bn: "ওই গাড়িটি নতুন।",
+        en: "That car is new."
+    },
+    {
+        bn: "আমার বন্ধুরা খুব ভালো।",
+        en: "My friends are very good."
+    },
+    {
+        bn: "আমাদের শিক্ষক খুব কঠোর।",
+        en: "Our teacher is very strict."
+    },
+    {
+        bn: "আমাদের ক্লাসরুমটি পরিষ্কার।",
+        en: "Our classroom is clean."
+    },
+    {
+        bn: "তোমার বাবা একজন ভালো মানুষ।",
+        en: "Your father is a good man."
+    },
+    {
+        bn: "তোমার উত্তরটি সঠিক।",
+        en: "Your answer is correct."
+    },
+
+    {
+        bn: "তাদের বাড়িটি খুব সুন্দর।",
+        en: "Their house is very beautiful."
+    },
+    {
+        bn: "তাদের সন্তানরা খুব মেধাবী।",
+        en: "Their children are very intelligent."
+    },
+    {
+        bn: "এই সমস্যাগুলো খুব কঠিন।",
+        en: "These problems are very difficult."
+    },
+    {
+        bn: "এই নিয়মগুলো গুরুত্বপূর্ণ।",
+        en: "These rules are important."
+    },
+    {
+        bn: "সত্যবাদী হওয়া খুব গুরুত্বপূর্ণ।",
+        en: "Being honest is very important."
+    },
+    {
+        bn: "একজন ভালো ছাত্র হওয়া সহজ নয়।",
+        en: "Being a good student is not easy."
+    },
+    {
+        bn: "একজন ভালো মানুষ হওয়া সবার দায়িত্ব।",
+        en: "Being a good person is everyone's responsibility."
+    },
+    {
+        bn: "ধৈর্যশীল হওয়া খুব গুরুত্বপূর্ণ।",
+        en: "Being patient is very important."
+    },
+    {
+        bn: "পরিশ্রমী হওয়া সফলতার চাবিকাঠি।",
+        en: "Being hardworking is the key to success."
+    },
+    {
+        bn: "সৎ থাকা সবসময় সহজ নয়।",
+        en: "Being honest is not always easy."
+    },
+
+    {
+        bn: "একজন ভালো নেতা সবসময় দায়িত্বশীল।",
+        en: "A good leader is always responsible."
+    },
+    {
+        bn: "একজন প্রকৃত বন্ধু সবসময় বিশ্বস্ত।",
+        en: "A true friend is always loyal."
+    },
+    {
+        bn: "সফল মানুষ সাধারণত আত্মবিশ্বাসী।",
+        en: "Successful people are usually confident."
+    },
+    {
+        bn: "আমাদের উদ্দেশ্য দেশের মানুষের সেবা করা।",
+        en: "Our purpose is to serve the people of the country."
+    },
+    {
+        bn: "জীবনে সফল হওয়া সবার স্বপ্ন।",
+        en: "Being successful in life is everyone's dream."
+    }
+
+];
+
+
+/* =========================
+   Quiz Variables
+========================= */
+
+let currentQuestion = 0;
+
+let score = 0;
+
+let attempts = 0;
+
+let answered = new Array(sentences.length).fill(false);
+
+let results = new Array(sentences.length).fill(null);
+
+
+/* =========================
+   Page Elements
+========================= */
+
+const banglaSentence =
+    document.getElementById("banglaSentence");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const answerBox =
+    document.getElementById("answer");
+
+const resultBox =
+    document.getElementById("result");
+
+const progressText =
+    document.getElementById("progressText");
+
+const progressBar =
+    document.getElementById("progressBar");
+
+const scoreText =
+    document.getElementById("scoreText");
+
+const correctCount =
+    document.getElementById("correctCount");
+
+const attemptCount =
+    document.getElementById("attemptCount");
+
+
+/* =========================
+   Show Question
+========================= */
+
+function showQuestion() {
+
+    const question = sentences[currentQuestion];
+
+    banglaSentence.textContent = question.bn;
+
+    questionNumber.textContent =
+        "প্রশ্ন " + (currentQuestion + 1);
+
+    progressText.textContent =
+        "বাক্য " +
+        (currentQuestion + 1) +
+        " / " +
+        sentences.length;
+
+    const percent =
+        ((currentQuestion + 1) / sentences.length) * 100;
+
+    progressBar.style.width = percent + "%";
+
+    scoreText.textContent =
+        "স্কোর: " + score;
+
+    correctCount.textContent =
+        score;
+
+    attemptCount.textContent =
+        attempts;
+
+    answerBox.value = "";
+
+    resultBox.style.display = "none";
+
+    resultBox.className = "result";
+
+
+    /*
+       যদি আগে উত্তর দেওয়া হয়ে থাকে,
+       তাহলে সেই উত্তর আবার দেখানো হবে।
+    */
+
+    if (answered[currentQuestion]) {
+
+        answerBox.value =
+            results[currentQuestion].userAnswer;
+
+        showPreviousResult();
+
+    }
+
+    answerBox.focus();
+}
+
+
+/* =========================
+   Check Answer
+========================= */
+
+function checkAnswer() {
+
+    const userAnswer =
+        answerBox.value.trim();
+
+    if (userAnswer === "") {
+
+        alert("দয়া করে আগে English উত্তর লিখুন।");
+
+        answerBox.focus();
+
+        return;
+    }
+
+
+    /*
+       একই প্রশ্ন বারবার Check করলে
+       score/attempt বাড়বে না।
+    */
+
+    if (answered[currentQuestion]) {
+
+        showPreviousResult();
+
+        return;
+    }
+
+
+    const correctAnswer =
+        sentences[currentQuestion].en;
+
+    const userNormalized =
+        normalizeText(userAnswer);
+
+    const correctNormalized =
+        normalizeText(correctAnswer);
+
+
+    attempts++;
+
+    answered[currentQuestion] = true;
+
+
+    if (userNormalized === correctNormalized) {
+
+        score++;
+
+        results[currentQuestion] = {
+
+            correct: true,
+
+            userAnswer: userAnswer
+
+        };
+
+        showCorrect();
+
+    } else {
+
+        results[currentQuestion] = {
+
+            correct: false,
+
+            userAnswer: userAnswer
+
+        };
+
+        showWrong();
+
+    }
+
+    updateScore();
+
+}
+
+
+/* =========================
+   Text Normalization
+========================= */
+
+function normalizeText(text) {
+
+    return text
+        .toLowerCase()
+        .trim()
+        .replace(/[.,!?;:]/g, "")
+        .replace(/\s+/g, " ");
+
+}
+
+
+/* =========================
+   Correct
+========================= */
+
+function showCorrect() {
+
+    resultBox.className =
+        "result correct";
+
+    resultBox.innerHTML =
+
+        "✅ <strong>সঠিক উত্তর!</strong><br>" +
+
+        "খুব ভালো! আপনি সঠিক English বাক্য লিখেছেন।";
+
+    resultBox.style.display = "block";
+}
+
+
+/* =========================
+   Wrong
+========================= */
+
+function showWrong() {
+
+    const correctAnswer =
+        sentences[currentQuestion].en;
+
+    resultBox.className =
+        "result wrong";
+
+    resultBox.innerHTML =
+
+        "❌ <strong>ভুল উত্তর।</strong><br>" +
+
+        "সঠিক English উত্তর:<div class='answer'>" +
+
+        correctAnswer +
+
+        "</div>";
+
+    resultBox.style.display = "block";
+}
+
+
+/* =========================
+   Previous Result
+========================= */
+
+function showPreviousResult() {
+
+    if (!results[currentQuestion]) {
+
+        return;
+
+    }
+
+    if (results[currentQuestion].correct) {
+
+        showCorrect();
+
+    } else {
+
+        showWrong();
+
+    }
+
+}
+
+
+/* =========================
+   Next Question
+========================= */
+
+function nextQuestion() {
+
+    if (currentQuestion < sentences.length - 1) {
+
+        currentQuestion++;
+
+        showQuestion();
+
+    } else {
+
+        showFinalResult();
+
+    }
+
+}
+
+
+/* =========================
+   Previous Question
+========================= */
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        showQuestion();
+
+    }
+
+}
+
+
+/* =========================
+   Update Score
+========================= */
+
+function updateScore() {
+
+    scoreText.textContent =
+        "স্কোর: " + score;
+
+    correctCount.textContent =
+        score;
+
+    attemptCount.textContent =
+        attempts;
+
+}
+
+
+/* =========================
+   Final Result
+========================= */
+
+function showFinalResult() {
+
+    let percentage =
+        Math.round((score / sentences.length) * 100);
+
+    let message = "";
+
+    if (percentage >= 90) {
+
+        message = "🏆 অসাধারণ! আপনার English খুব ভালো।";
+
+    } else if (percentage >= 70) {
+
+        message = "👏 খুব ভালো! আরও একটু practice করুন।";
+
+    } else if (percentage >= 50) {
+
+        message = "👍 ভালো চেষ্টা! আরও practice করলে ভালো করবেন।";
+
+    } else {
+
+        message = "💪 চিন্তা করবেন না। নিয়মিত practice করুন।";
+
+    }
+
+
+    resultBox.className =
+        "result correct";
+
+    resultBox.innerHTML =
+
+        "<strong>🎉 ১০০টি বাক্য সম্পন্ন!</strong><br><br>" +
+
+        "আপনার স্কোর: " +
+
+        score +
+
+        " / " +
+
+        sentences.length +
+
+        "<br>" +
+
+        "শতকরা: " +
+
+        percentage +
+
+        "%<br><br>" +
+
+        message;
+
+    resultBox.style.display = "block";
+
+}
+
+
+/* =========================
+   Reset Quiz
+========================= */
+
+function resetQuiz() {
+
+    const confirmReset =
+        confirm("আপনি কি পুরো Quiz আবার শুরু করতে চান?");
+
+    if (!confirmReset) {
+
+        return;
+
+    }
+
+    currentQuestion = 0;
+
+    score = 0;
+
+    attempts = 0;
+
+    answered =
+        new Array(sentences.length).fill(false);
+
+    results =
+        new Array(sentences.length).fill(null);
+
+    showQuestion();
+
+}
+
+
+/* =========================
+   Bangla Speech
+========================= */
+
+function speakBangla() {
+
+    if (!("speechSynthesis" in window)) {
+
+        alert(
+            "আপনার browser বাংলা Speech Support করে না।"
+        );
+
+        return;
+    }
+
+
+    window.speechSynthesis.cancel();
+
+
+    const text =
+        sentences[currentQuestion].bn;
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+    speech.lang = "bn-BD";
+
+    speech.rate = 0.85;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+
+    /*
+       কিছু ডিভাইসে bn-BD voice না থাকলে
+       available Bengali voice খুঁজবে।
+    */
+
+    const voices =
+        window.speechSynthesis.getVoices();
+
+    const banglaVoice =
+        voices.find(function(voice) {
+
+            return (
+                voice.lang.toLowerCase()
+                .startsWith("bn")
+            );
+
+        });
+
+
+    if (banglaVoice) {
+
+        speech.voice = banglaVoice;
+
+    }
+
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================
+   Keyboard Shortcut
+========================= */
+
+answerBox.addEventListener(
+    "keydown",
+    function(event) {
+
+        /*
+           Ctrl + Enter = Check
+        */
+
+        if (
+            event.ctrlKey &&
+            event.key === "Enter"
+        ) {
+
+            checkAnswer();
+
+        }
+
+        /*
+           Enter নয়, Ctrl+Enter ব্যবহার করতে হবে
+           যাতে সাধারণ typing-এর সময় সমস্যা না হয়।
+        */
+
+    }
+);
+
+
+/* =========================
+   Load Voices
+========================= */
+
+if ("speechSynthesis" in window) {
+
+    window.speechSynthesis.onvoiceschanged =
+        function() {
+
+            window.speechSynthesis.getVoices();
+
+        };
+
+}
+
+
+/* =========================
+   Start Quiz
+========================= */
+
+showQuestion();
+
+</script>
+
+</body>
+</html>
